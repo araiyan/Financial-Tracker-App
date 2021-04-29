@@ -1,0 +1,42 @@
+Income
+    Jobs
+        0
+
+Expenses (Fixed)
+    Housing
+        0
+    Utilities
+        0
+    insurance
+        0
+    Retirement
+        0
+    Debt
+        0
+    Income Tax
+        0
+
+Expenses (Non Fixed)
+    Food
+        0
+    Personal Care
+        0
+    Household Items
+        0
+    Fitness
+        0
+    Entertainment
+        0
+    Transportation
+        0
+
+Goals
+    Saving Goals
+        0
+    Individual Retirement Goals
+        0
+    Vacation/Travel Goals
+        0
+    Items Saving For
+        0
+
