@@ -1,2 +1,6 @@
 
 *.txt
+.vs
+Financial Tracker App/x64
+Financial Tracker App/.vs
+x64/Debug
