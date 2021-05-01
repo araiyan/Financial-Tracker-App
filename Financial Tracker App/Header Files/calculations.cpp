@@ -34,7 +34,7 @@ void calculateAmountToSave(Category categories[], Category minimumExpenses,
         addAmount(categories[2].subcategories[i].subcategoryName, amountToSave,
             potentialAmountToSave[i] * percentageToSave);
     }
-
+    delete[] potentialAmountToSave;
 }
 
 //
@@ -97,8 +97,8 @@ float calTotalAmountToSave(Category categories[], Category minimumExpenses)
     {
         totalPotentialAmountToSave += potentialAmountToSave[i];
     }
+    delete[] potentialAmountToSave;
     return totalPotentialAmountToSave;
-
 }
 
 //

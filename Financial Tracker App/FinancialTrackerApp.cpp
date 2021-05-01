@@ -194,5 +194,6 @@ int main()
     {
         saveFileOnMenuChoice(menuChoice, outputFile, historyFile, categories);
     }
+    delete[] categories;
     ImGui::SFML::Shutdown();
 }
