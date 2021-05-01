@@ -2,6 +2,7 @@
 #include "../libs/imgui.h"
 #include "../libs/imgui-SFML.h"
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 void makeMultipleLines(int lineCount);
 bool isFileEmpty(std::ifstream& inputFile);
@@ -84,6 +85,14 @@ void menu(std::ifstream& inputFile, Category categories[], int& menuChoice,
             defineAllCategories(inputFile, categories);
             menuChoice = 2;
         }
+    }
+    
+    makeMultipleLines(4);
+    ImGui::Spacing();
+    ImGui::SameLine(ImGui::GetWindowSize().x * 0.5f - (buttonSize.x / 2.0f));
+    if (ImGui::Button("Show Help", buttonSize))
+    {
+        menuChoice = 3;
     }
 
     makeMultipleLines(4);
