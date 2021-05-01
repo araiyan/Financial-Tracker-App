@@ -170,3 +170,11 @@ void saveDataFile(std::ofstream& outputFile, Category categories[]);
 //
 void saveFileOnMenuChoice(int menuChoice, std::ofstream& outputFile,
     std::ofstream& historyFile, Category categories[]);
+//
+// A output module that shows the user how the program works and how
+// they can use it. the showHelp module uses background pictures to
+// explain everything.
+//
+void showHelp(sf::RenderWindow& window, int& nextOrPrevious,
+              ImVec2 windowSize);
+
