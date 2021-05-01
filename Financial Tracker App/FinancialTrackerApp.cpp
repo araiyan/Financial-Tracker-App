@@ -105,32 +105,36 @@ int main()
         ImGui::SFML::Update(window, deltaClock.restart());
         windowSize = ImVec2 { static_cast<float>(window.getSize().x),
             static_cast<float>(window.getSize().y) };
-
+        
+        window.clear();
+        window.draw(backgroundSprite);
+        
         switch (eventWindow)
         {
             case 0:
                 menu(inputFile, categories, menuChoice, windowSize);
                 if (menuChoice == 1 || menuChoice == 2)
-                    eventWindow++;
+                    eventWindow += 1;
+                else if (menuChoice == 3)
+                    eventWindow += 2;
                 break;
 
             case 1:
                 input(categories, menuChoice, nextOrPrevious, windowSize);
-                if (nextOrPrevious == 1)
-                {
-                    nextOrPrevious = 0;
-                    menuChoice = 0;
-                    eventWindow--;
-                }
                 if (nextOrPrevious == 2)
                 {
                     nextOrPrevious = 0;
                     eventWindow += 2; 
                 }
-                else if (nextOrPrevious == 3)
+                break;
+
+            case 2:
+                showHelp(window, nextOrPrevious, windowSize);
+                if (nextOrPrevious == 1)
                 {
                     nextOrPrevious = 0;
-                    categories = initializeAllCategories();
+                    eventWindow -= 2;
+                    menuChoice = 0;
                 }
                 break;
 
@@ -162,16 +166,13 @@ int main()
             case 5:
                 window.close();
                 break;
-
             default:
                 std::cout << "ERROR!!!" << std::endl;
                 window.close();
                 break;
 
         }
-
-        window.clear();
-        window.draw(backgroundSprite);
+        
         ImGui::SFML::Render(window);
         window.display();
     }
