@@ -1,12 +1,18 @@
 Income
     Jobs
-        0
+        1
+        job
+          2000
 
 Expenses (Fixed)
     Housing
-        0
+        1
+        house
+          500
     Utilities
-        0
+        1
+        util
+          200
     insurance
         0
     Retirement
@@ -18,7 +24,9 @@ Expenses (Fixed)
 
 Expenses (Non Fixed)
     Food
-        0
+        1
+        food
+          500
     Personal Care
         0
     Household Items
@@ -26,13 +34,75 @@ Expenses (Non Fixed)
     Fitness
         0
     Entertainment
+        1
+        enter
+          500
+    Transportation
+        1
+        gas
+          200
+
+Goals
+    Saving Goals
+        1
+        save
+          400
+    Individual Retirement Goals
         0
+    Vacation/Travel Goals
+        0
+    Items Saving For
+        0
+
+Income
+    Jobs
+        1
+        job
+          2000
+
+Expenses (Fixed)
+    Housing
+        1
+        house
+          500
+    Utilities
+        1
+        util
+          200
+    insurance
+        0
+    Retirement
+        0
+    Debt
+        0
+    Income Tax
+        0
+
+Expenses (Non Fixed)
+    Food
+        1
+        food
+          500
+    Personal Care
+        0
+    Household Items
+        1
+        vase
+          400
+    Fitness
+        0
+    Entertainment
+        1
+        enter
+          400
     Transportation
         0
 
 Goals
     Saving Goals
-        0
+        1
+        save
+          400
     Individual Retirement Goals
         0
     Vacation/Travel Goals

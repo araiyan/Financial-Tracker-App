@@ -16,6 +16,7 @@ void skipEndLine(std::ifstream& inputFile, std::string& name);
 
 void defineAllCategories(std::ifstream& inputFile, Category categories[])
 {
+    inputFile.seekg(0);
     std::string inputCategoryName;
     for (int i = 0; i < NUM_CATEGORY; i++)
     {
