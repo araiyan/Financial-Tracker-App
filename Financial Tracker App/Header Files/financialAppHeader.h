@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <thread>
+#include <future>
 #include "../libs/imgui.h"
 #include "../libs/imgui-SFML.h"
 #include <SFML/Graphics.hpp>
@@ -177,4 +179,10 @@ void saveFileOnMenuChoice(int menuChoice, std::ofstream& outputFile,
 // explain everything.
 //
 void showHelp(sf::RenderWindow& window,
-    int& nextOrPrevious, ImVec2 windowSize);
+    std::future<std::vector<sf::Texture>>& futr, int& nextOrPrevious,
+    ImVec2 windowSize);
+
+//
+// An input module to get all the textures
+//
+void loadTextures(std::promise<std::vector<sf::Texture>>&& prms);

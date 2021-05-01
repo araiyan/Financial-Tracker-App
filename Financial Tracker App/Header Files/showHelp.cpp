@@ -3,6 +3,7 @@
 #include "../libs/imgui-SFML.h"
 #include <iostream>
 #include <vector>
+#include <future>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
@@ -10,12 +11,12 @@
 #include <SFML/Graphics.hpp>
 
 void loadTexture(std::string fileName, sf::Texture& showHelpSprite);
-std::vector<sf::Texture> loadTextures();
 
 void showHelp(sf::RenderWindow& window,
-    int& nextOrPrevious, ImVec2 windowSize)
+    std::future<std::vector<sf::Texture>>& futr, int& nextOrPrevious,
+    ImVec2 windowSize)
 {
-    static std::vector<sf::Texture> textures = loadTextures();
+    static std::vector<sf::Texture> textures = futr.get();
     static sf::Sprite showHelpSprite;
     ImGuiWindowFlags windowFlags = 0;
     static int showHelpTab = 0;
@@ -53,10 +54,7 @@ void showHelp(sf::RenderWindow& window,
     window.draw(showHelpSprite);
 }
 
-//
-// An input module to get all the textures
-//
-std::vector<sf::Texture> loadTextures()
+void loadTextures(std::promise<std::vector<sf::Texture>>&& prms)
 {
     std::vector<sf::Texture> sprites;
     std::string fileNames[4] = 
@@ -73,7 +71,7 @@ std::vector<sf::Texture> loadTextures()
         sprites.push_back(std::move(showHelpTexture));
     }
 
-    return sprites;
+    prms.set_value(sprites);
 }
 
 //

@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <future>
 
 #include "libs/imgui.h"
 #include "libs/imgui-SFML.h"
@@ -32,6 +33,10 @@
 
 int main()
 {
+    std::promise<std::vector<sf::Texture>> prms;
+    std::future<std::vector<sf::Texture>> futr = prms.get_future();
+    std::thread th(&loadTextures, std::move(prms));
+
     std::ifstream inputFile;
     std::ofstream outputFile;
     std::ofstream historyFile;
@@ -74,7 +79,6 @@ int main()
     ////////////////// Preprocessing ////////////////// 
     categories = initializeAllCategories();
     minimumNonFixedExpenses = initializeMinimumNonFixedExpenses();
-
     inputFile.open(FILE_NAME);
     if (!inputFile)
     {
@@ -140,7 +144,8 @@ int main()
                 break;
 
             case 2:
-                showHelp(window, nextOrPrevious, windowSize);
+                if (th.joinable()) th.join();
+                showHelp(window, futr, nextOrPrevious, windowSize);
                 if (nextOrPrevious == 1)
                 {
                     nextOrPrevious = 0;
@@ -194,6 +199,5 @@ int main()
     {
         saveFileOnMenuChoice(menuChoice, outputFile, historyFile, categories);
     }
-    delete[] categories;
     ImGui::SFML::Shutdown();
 }
