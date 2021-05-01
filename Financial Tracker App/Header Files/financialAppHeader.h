@@ -5,6 +5,7 @@
 #include <fstream>
 #include "../libs/imgui.h"
 #include "../libs/imgui-SFML.h"
+#include <SFML/Graphics.hpp>
 
 //
 // Struct for storing information about different subcategories
@@ -175,6 +176,5 @@ void saveFileOnMenuChoice(int menuChoice, std::ofstream& outputFile,
 // they can use it. the showHelp module uses background pictures to
 // explain everything.
 //
-void showHelp(sf::RenderWindow& window, int& nextOrPrevious,
-              ImVec2 windowSize);
-
+void showHelp(sf::RenderWindow& window,
+    int& nextOrPrevious, ImVec2 windowSize);

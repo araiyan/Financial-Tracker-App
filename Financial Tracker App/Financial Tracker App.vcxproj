@@ -158,6 +158,7 @@
     <ClCompile Include="Header Files\menu.cpp" />
     <ClCompile Include="Header Files\output.cpp" />
     <ClCompile Include="Header Files\processing.cpp" />
+    <ClCompile Include="Header Files\showHelp.cpp" />
     <ClCompile Include="libs\imgui-SFML.cpp" />
     <ClCompile Include="libs\imgui.cpp" />
     <ClCompile Include="libs\imgui_demo.cpp" />

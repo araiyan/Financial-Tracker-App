@@ -2,43 +2,21 @@
 #include "../libs/imgui.h"
 #include "../libs/imgui-SFML.h"
 #include <iostream>
+#include <vector>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics.hpp>
 
+void loadTexture(std::string fileName, sf::Texture& showHelpSprite);
+std::vector<sf::Texture> loadTextures();
+
 void showHelp(sf::RenderWindow& window,
     int& nextOrPrevious, ImVec2 windowSize)
 {
-    static sf::Texture showhelpPic;
-    static sf::Sprite showhelpSprite;
-
-    static sf::Texture showhelpPic_2;
-    static sf::Sprite showhelpSprite_2;
-
-    static sf::Texture showhelpPic_3;
-    static sf::Sprite showhelpSprite_3;
-
-    static sf::Texture showhelpPic_4;
-    static sf::Sprite showhelpSprite_4;
-
-    showhelpPic.loadFromFile("showHelp pics.jpg");
-    showhelpSprite.setOrigin(-300, -180);
-    showhelpSprite.setTexture(showhelpPic);
-
-    showhelpPic_2.loadFromFile("showHelp pics #2.jpg");
-    showhelpSprite_2.setOrigin(-300, -180);
-    showhelpSprite_2.setTexture(showhelpPic_2);
-
-    showhelpPic_3.loadFromFile("showHelp pics #3.jpg");
-    showhelpSprite_3.setOrigin(-300, -180);
-    showhelpSprite_3.setTexture(showhelpPic_3);
-
-    showhelpPic_4.loadFromFile("showHelp pics #4.jpg");
-    showhelpSprite_4.setOrigin(-300, -180);
-    showhelpSprite_4.setTexture(showhelpPic_4);
-
+    static std::vector<sf::Texture> textures = loadTextures();
+    static sf::Sprite showHelpSprite;
     ImGuiWindowFlags windowFlags = 0;
     static int showHelpTab = 0;
     ImVec2 buttonSize = { 400, 50 };
@@ -70,19 +48,38 @@ void showHelp(sf::RenderWindow& window,
         showHelpTab = 0;
     }
 
-    switch (showHelpTab)
+    showHelpSprite.setOrigin(-300, -180);
+    showHelpSprite.setTexture(textures[showHelpTab]);
+    window.draw(showHelpSprite);
+}
+
+//
+// An input module to get all the textures
+//
+std::vector<sf::Texture> loadTextures()
+{
+    std::vector<sf::Texture> sprites;
+    std::string fileNames[4] = 
     {
-        case 0:
-            window.draw(showhelpSprite);
-            break;
-        case 1:
-            window.draw(showhelpSprite_2);
-            break;
-        case 2:
-            window.draw(showhelpSprite_3);
-            break;
-        case 3:
-            window.draw(showhelpSprite_4);
-            break;
+        "showHelp pics #1.jpg",
+        "showHelp pics #2.jpg",
+        "showHelp pics #3.jpg",
+        "showHelp pics #4.jpg"
+    };
+    for (int i = 0; i < 4; i++)
+    {
+        sf::Texture showHelpTexture;
+        loadTexture(fileNames[i], showHelpTexture);
+        sprites.push_back(std::move(showHelpTexture));
     }
+
+    return sprites;
+}
+
+//
+// An input module to load in a sprite
+//
+void loadTexture(std::string fileName, sf::Texture& showHelpPic)
+{
+    showHelpPic.loadFromFile(fileName);
 }

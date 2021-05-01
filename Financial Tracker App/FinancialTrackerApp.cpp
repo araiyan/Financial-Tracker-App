@@ -121,10 +121,21 @@ int main()
 
             case 1:
                 input(categories, menuChoice, nextOrPrevious, windowSize);
+                if (nextOrPrevious == 1)
+                {
+                    nextOrPrevious = 0;
+                    menuChoice = 0;
+                    eventWindow--;
+                }
                 if (nextOrPrevious == 2)
                 {
                     nextOrPrevious = 0;
-                    eventWindow += 2; 
+                    eventWindow += 2;
+                }
+                else if (nextOrPrevious == 3)
+                {
+                    nextOrPrevious = 0;
+                    categories = initializeAllCategories();
                 }
                 break;
 
