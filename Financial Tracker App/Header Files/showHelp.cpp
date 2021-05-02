@@ -5,9 +5,6 @@
 #include <vector>
 #include <future>
 
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/System/Clock.hpp>
-#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics.hpp>
 
 void loadTexture(std::string fileName, sf::Texture& showHelpSprite);
@@ -67,17 +64,9 @@ void loadTextures(std::promise<std::vector<sf::Texture>>&& prms)
     for (int i = 0; i < 4; i++)
     {
         sf::Texture showHelpTexture;
-        loadTexture(fileNames[i], showHelpTexture);
-        sprites.push_back(std::move(showHelpTexture));
+        showHelpTexture.loadFromFile(fileNames[i]);
+        sprites.push_back(showHelpTexture);
     }
 
-    prms.set_value(sprites);
-}
-
-//
-// An input module to load in a sprite
-//
-void loadTexture(std::string fileName, sf::Texture& showHelpPic)
-{
-    showHelpPic.loadFromFile(fileName);
+    prms.set_value(std::move(sprites));
 }

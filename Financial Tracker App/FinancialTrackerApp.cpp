@@ -144,8 +144,8 @@ int main()
                 break;
 
             case 2:
-                if (th.joinable()) th.join();
                 showHelp(window, futr, nextOrPrevious, windowSize);
+                if (th.joinable()) th.join();
                 if (nextOrPrevious == 1)
                 {
                     nextOrPrevious = 0;
@@ -194,6 +194,7 @@ int main()
     }
 
     ////////////////////// Postprocessing ////////////////////////////
+    if (th.joinable()) th.join();
     inputFile.close(); 
     if (saveFile)
     {

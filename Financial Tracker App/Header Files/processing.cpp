@@ -1,3 +1,4 @@
+#include "financialAppHeader.h"
 #include <string>
 #include <vector>
 #include <fstream>
@@ -5,7 +6,6 @@
 #include "../libs/imgui-SFML.h"
 #include <cstdlib>
 #include <ctime>
-#include "financialAppHeader.h"
 
 //
 // Struct for storing information about different texts -

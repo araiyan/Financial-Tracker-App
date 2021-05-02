@@ -7,6 +7,8 @@
 #include <future>
 #include "../libs/imgui.h"
 #include "../libs/imgui-SFML.h"
+#include "../libs/imgui_stdlib.h"
+
 #include <SFML/Graphics.hpp>
 
 //
